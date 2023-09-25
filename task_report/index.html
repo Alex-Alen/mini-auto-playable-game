@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel= "stylesheet" type= "text/css" href="css/bootstrap.min.css"/>
+    <link rel= "stylesheet" type= "text/css" href="css/mostili.css"/>
+</head>
+<meta charset="utf-8" />
+<title>Alex-Alen Pugatsov TA-21V</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css">
+<body>
+    <div class="container-fluid">
+      <div>
+      <h1><strong><center>Класс superAnt</center></strong></h1>
+      <h1><strong><center>Alex-Alen Pugatsov (TA-21V)</center></strong></h1>
+      </div> 
+
+
+      <div style="position: relative;">
+        <section class="container pt-5">
+          <section class="mb-10">
+            <h5 class="fw-bold text-center mb-5"></h5>
+            <div class="row mb-4">
+              <div class="col-2"> <img src="vscode.PNG" class="img-fluid"></div>
+              <div class="col-10">
+                <p class="mb-2"><strong>Visual Studio Code</strong></p>
+                <p>Visual Studio Code — редактор исходного кода,
+                  разработанный Microsoft для Windows, Linux и macOS.
+                  Позиционируется как «лёгкий» редактор кода для кроссплатформенной разработки веб- и облачных приложений.
+                  Использовался для написания кода.</p>
+              </div>
+            </div>
+          </section>
+        </section>
+
+
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+
+
+
+
+
+
+      <div class="center-fluid col-12 col-md-12 col-lg-12 col-xl-12">
+        <center><h1><strong>Домашнее задание</strong></h1></center>
+        <center><h2>
+
+          <div class="col-10">
+            <p>1. Создать класс superAnt, у которого в конструкторе будет код из функции ant и
+              создать для этого класса метод walkAnt с кодом из функции walkAnt.<br>
+              2. Создать не менее двух объектов, принадлежащих классу superAnt,
+              которые будут повторять все действия указанных функций.</p>
+          </div>
+
+        </h2></center>
+
+
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+
+        <center><h1><strong>Снимок задания</strong></h1></center>
+        <center><img src="1.PNG" border="2" style="max-width:40%; "/></center>
+      </div>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+
+
+      <h1><strong><center>Код программы</center></strong></h1>
+
+
+    <div class="accordion" id="accordionExample" >
+      <div class="accordion-item col-12 col-md-12 col-lg-12 col-xl-12 center-fluid">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Код программы
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+
+<div class="col-10"></div>
+            <pre>
+            <code class="html">
+<xmp>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+      // созднаие нового класса
+      class superAnt {
+        constructor(IK) {
+          do {
+            this.X = Math.floor(Math.random() * Map.length);
+            this.Y = Math.floor(Math.random() * Map[0].length);
+          } while (Map[this.X][this.Y] != 0);
+          //IK=65;
+          Map[this.X][this.Y] = IK;
+          walkAnt(IK);
+        }
+
+        walkAnt(IM) {
+        // 0. Определение собственных координат
+        Cx = 0;
+        Cy = 0;
+        for (i = 0; i < Map.length; i++) {
+          for (j = 0; j < Map[0].length; j++) {
+            if (Map[i][j] == Im) {
+              Cx = i;
+              Cy = j;
+            }
+          }
+        }
+        // 1. Определение возможных соседних клеток
+        // 2. Определение свободных соседних клеток
+        cellsToGo = Array();
+        for (
+          i = Cx < 1 ? 0 : Cx - 1;
+          i <= (Cx == Map.length - 1 ? Cx : Cx + 1);
+          i++
+        ) {
+          for (
+            j = Cy < 1 ? 0 : Cy - 1;
+            j <= (Cy == Map[0].length - 1 ? Cy : Cy + 1);
+            j++
+          ) {
+            if (Math.abs(Cx - i) + Math.abs(Cy - j) == 1 && Map[i][j] == 0) {
+              cellsToGo.push(Array(i, j));
+            }
+          }
+        }
+        // 3. Выбор клетки для перемещения
+        nextStep = cellsToGo[Math.floor(Math.random() * cellsToGo.length)];
+        // 4. Регистрация собственного номера в выбранной клетке
+        Map[nextStep[0]][nextStep[1]] = Im;
+        // 5. Удаление собственного номера из предыдущей клетки
+        Map[Cx][Cy] = 0;
+        mapBuilder();
+        setTimeout(walkAnt, 1000, Im);
+        }
+      }
+      // конец создания класса
+    </script>
+
+
+    <script language="javascript">
+      N = 5;
+      M = 6;
+      Map = Array();
+      for (i = 0; i < N; i++) {
+        Map[i] = Array();
+        for (j = 0; j < M; j++) {
+          Map[i][j] = 0;
+        }
+      }
+      Map[0][2] = -1;
+      Map[1][1] = -1;
+      Map[2][1] = -1;
+      mColors = Array();
+      for (i = 0; i < 100; i++) {
+        mColors.push(
+          "rgb(" +
+            Math.round(Math.random() * 255) +
+            "," +
+            Math.round(Math.random() * 255) +
+            "," +
+            Math.round(Math.random() * 255) +
+            ")"
+        );
+      }
+
+      function mapBuilder() {
+        newMap = document.createElement("table");
+        newMap.setAttribute("id", "anthill");
+        for (i = 0; i < Map.length; i++) {
+          newRow = document.createElement("tr");
+          for (j = 0; j < Map[0].length; j++) {
+            newCell = document.createElement("td");
+            adds = "";
+            if (Map[i][j] > 0) {
+              adds = ";background-color:" + mColors[Map[i][j]] + ";";
+            }
+            if (Map[i][j] == -1) {
+              adds = ";background-color:black;";
+            }
+            newCell.setAttribute(
+              "style",
+              "width: 20px; height: 20px; border:solid 1px grey;" + adds
+            );
+            newCell.innerHTML = Map[i][j];
+            newRow.appendChild(newCell);
+          }
+          newMap.appendChild(newRow);
+        }
+        if (document.getElementById("anthill") != null) {
+          oldMap = document.getElementById("anthill");
+          oldMap.parentNode.removeChild(oldMap);
+        }
+        document.body.appendChild(newMap);
+      }
+
+      function ant(IK) {
+        do {
+          X = Math.floor(Math.random() * Map.length);
+          Y = Math.floor(Math.random() * Map[0].length);
+        } while (Map[X][Y] != 0);
+        //IK=65;
+        Map[X][Y] = IK;
+        walkAnt(IK);
+      }
+
+      function walkAnt(Im) {
+        // 0. Определение собственных координат
+        Cx = 0;
+        Cy = 0;
+        for (i = 0; i < Map.length; i++) {
+          for (j = 0; j < Map[0].length; j++) {
+            if (Map[i][j] == Im) {
+              Cx = i;
+              Cy = j;
+            }
+          }
+        }
+        // 1. Определение возможных соседних клеток
+        // 2. Определение свободных соседних клеток
+        cellsToGo = Array();
+        for (
+          i = Cx < 1 ? 0 : Cx - 1;
+          i <= (Cx == Map.length - 1 ? Cx : Cx + 1);
+          i++
+        ) {
+          for (
+            j = Cy < 1 ? 0 : Cy - 1;
+            j <= (Cy == Map[0].length - 1 ? Cy : Cy + 1);
+            j++
+          ) {
+            if (Math.abs(Cx - i) + Math.abs(Cy - j) == 1 && Map[i][j] == 0) {
+              cellsToGo.push(Array(i, j));
+            }
+          }
+        }
+        // 3. Выбор клетки для перемещения
+        nextStep = cellsToGo[Math.floor(Math.random() * cellsToGo.length)];
+        // 4. Регистрация собственного номера в выбранной клетке
+        Map[nextStep[0]][nextStep[1]] = Im;
+        // 5. Удаление собственного номера из предыдущей клетки
+        Map[Cx][Cy] = 0;
+        mapBuilder();
+        setTimeout(walkAnt, 1000, Im);
+      }
+    </script>
+  </head>
+  <body onload="ant1 = new superAnt(25); ant2 = new superAnt(11); ant1.walkAnt(); ant2.walkAnt();">
+</body>
+</html>
+</xmp>
+              
+
+              </code>
+            </pre>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p>&nbsp;</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<script language = "javascript" src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
